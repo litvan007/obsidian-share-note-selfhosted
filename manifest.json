@@ -1,0 +1,10 @@
+{
+	"id": "share-note-selfhosted",
+	"name": "Share Note (Self-Hosted)",
+	"version": "1.0.0",
+	"minAppVersion": "1.0.0",
+	"description": "Share notes to your self-hosted server. One click → link in clipboard.",
+	"author": "Ivan",
+	"authorUrl": "",
+	"isDesktopOnly": false
+}

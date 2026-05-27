@@ -1,0 +1,5 @@
+/* Share Note plugin styles */
+.share-note-status {
+    color: var(--text-muted);
+    font-size: 12px;
+}
