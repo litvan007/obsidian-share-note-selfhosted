@@ -165,8 +165,12 @@ var ShareNoteSettingTab = class extends import_obsidian.PluginSettingTab {
   display() {
     const { containerEl } = this;
     containerEl.empty();
-    containerEl.createEl("h2", { text: "Share Note Settings" });
-    new import_obsidian.Setting(containerEl).setName("Server URL").setDesc("URL of your Share Note server").addText(
+    containerEl.createEl("h2", { text: "Share Note (Self-Hosted) Settings" });
+    containerEl.createEl("p", {
+      text: "By default, notes are shared via the plugin author's server. You can change this to your own self-hosted server if preferred.",
+      cls: "setting-item-description"
+    });
+    new import_obsidian.Setting(containerEl).setName("Server URL").setDesc("The server where your notes will be uploaded. Default: the shared public server. Change this to your own server URL if you have one.").addText(
       (text) => text.setPlaceholder("https://share.example.com").setValue(this.plugin.settings.serverUrl).onChange(async (value) => {
         this.plugin.settings.serverUrl = value;
         await this.plugin.saveSettings();
@@ -174,4 +178,3 @@ var ShareNoteSettingTab = class extends import_obsidian.PluginSettingTab {
     );
   }
 };
-//# sourceMappingURL=main.js.map

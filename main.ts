@@ -188,11 +188,16 @@ class ShareNoteSettingTab extends PluginSettingTab {
 		const { containerEl } = this;
 		containerEl.empty();
 
-		containerEl.createEl('h2', { text: 'Share Note Settings' });
+		containerEl.createEl('h2', { text: 'Share Note (Self-Hosted) Settings' });
+
+		containerEl.createEl('p', {
+			text: 'By default, notes are shared via the plugin author\'s server. You can change this to your own self-hosted server if preferred.',
+			cls: 'setting-item-description'
+		});
 
 		new Setting(containerEl)
 			.setName('Server URL')
-			.setDesc('URL of your Share Note server')
+			.setDesc('The server where your notes will be uploaded. Default: the shared public server. Change this to your own server URL if you have one.')
 			.addText((text) =>
 				text
 					.setPlaceholder('https://share.example.com')
