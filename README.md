@@ -1,54 +1,27 @@
-# Share Note (Self-Hosted) 🔗
+# Page Sharing
 
-An Obsidian plugin that shares your notes to a **self-hosted server** with one click. Generates a link you can send to anyone.
+Obsidian plugin for one-click note sharing via a link.
 
-## Features
+**Default:** notes are shared via the plugin author's server. You can change this to your own self-hosted server in settings.
 
-- 📤 One-click sharing from Obsidian
-- 🖼️ Automatically uploads embedded images (`![[image.jpg]]` and `![](path)`)
-- 📋 Link copied to clipboard instantly
-- 🔒 Self-hosted — your data stays on your server
-- 🌙 Beautiful dark theme with image lightbox
+## Install
 
-## Installation
-
-### Option 1: Manual
-1. Download [main.js](releases/latest/download/main.js), [manifest.json](releases/latest/download/manifest.json), and [styles.css](releases/latest/download/styles.css)
-2. Create folder `.obsidian/plugins/share-note-selfhosted/` in your vault
-3. Place all 3 files inside
-4. Enable in Obsidian: Settings → Community plugins → Share Note (Self-Hosted)
-
-### Option 2: BRAT
-1. Install [BRAT](https://github.com/TfTHacker/obsidian42-brat)
-2. BRAT settings → Add Beta plugin → paste this repo URL
-3. Enable the plugin
-
-## Server Setup
-
-The plugin requires a backend server. See [server/](server/) for the FastAPI-based server.
-
-### Quick start
-
-```bash
-pip install fastapi uvicorn markdown2 python-multipart
-python3 -m uvicorn server.main:app --host 127.0.0.1 --port 9100
-```
-
-Put it behind a reverse proxy (Caddy, nginx) with HTTPS.
-
-## Configuration
-
-In plugin settings, set your server URL:
-
-```
-https://share.yourdomain.com
-```
+1. Create folder `.obsidian/plugins/page-sharing/` in your vault
+2. Download [main.js](https://github.com/litvan007/obsidian-share-note-selfhosted/releases/latest/download/main.js), [manifest.json](https://github.com/litvan007/obsidian-share-note-selfhosted/releases/latest/download/manifest.json), [styles.css](https://github.com/litvan007/obsidian-share-note-selfhosted/releases/latest/download/styles.css) into it
+3. Restart Obsidian
+4. Settings → Community plugins → enable **Page Sharing**
 
 ## Usage
 
-- Open any Markdown note
-- Click the **share** icon in the ribbon, or run `Share Note: Share current note` from the command palette
-- The link is copied to your clipboard!
+Open any note → click the share icon in the ribbon (or run the command) → link is copied to your clipboard.
+
+## Settings
+
+- **Server URL** — defaults to the shared public server. Change to your own if you self-host.
+
+## Self-hosting
+
+See the `server/` folder for the FastAPI backend. Deploy with Docker or manually.
 
 ## License
 

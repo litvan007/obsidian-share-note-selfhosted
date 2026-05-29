@@ -1,7 +1,7 @@
 {
-	"id": "share-note-selfhosted",
-	"name": "Share Note",
-	"version": "1.1.0",
+	"id": "page-sharing",
+	"name": "Page Sharing",
+	"version": "1.2.0",
 	"minAppVersion": "1.0.0",
 	"description": "Share notes via a link — one click and the URL is in your clipboard. Uses a shared server by default, or switch to your own in settings.",
 	"author": "Ivan",

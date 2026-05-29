@@ -1,28 +1,28 @@
 import { App, Plugin, PluginSettingTab, Setting, Notice, TFile, requestUrl, MarkdownRenderer, Component } from 'obsidian';
 
-interface ShareNoteSettings {
+interface PageSharingSettings {
 	serverUrl: string;
 }
 
-const DEFAULT_SETTINGS: ShareNoteSettings = {
+const DEFAULT_SETTINGS: PageSharingSettings = {
 	serverUrl: 'https://share.142-252-220-144.sslip.io:8444'
 }
 
-export default class ShareNotePlugin extends Plugin {
-	settings: ShareNoteSettings;
+export default class PageSharingPlugin extends Plugin {
+	settings: PageSharingSettings;
 
 	async onload() {
 		await this.loadSettings();
 
 		// Ribbon icon
-		this.addRibbonIcon('share', 'Share Note', async () => {
+		this.addRibbonIcon('share', 'Page Sharing', async () => {
 			await this.shareActiveNote();
 		});
 
 		// Command
 		this.addCommand({
 			id: 'share-note',
-			name: 'Share current note',
+			name: 'Share current page',
 			callback: async () => {
 				await this.shareActiveNote();
 			},
@@ -34,7 +34,7 @@ export default class ShareNotePlugin extends Plugin {
 				if (file instanceof TFile && file.extension === 'md') {
 					menu.addItem((item) => {
 						item
-							.setTitle('🔗 Share Note')
+							.setTitle('🔗 Share Page')
 							.setIcon('share')
 							.onClick(async () => {
 								await this.shareFile(file);
@@ -45,7 +45,7 @@ export default class ShareNotePlugin extends Plugin {
 		);
 
 		// Settings tab
-		this.addSettingTab(new ShareNoteSettingTab(this.app, this));
+		this.addSettingTab(new PageSharingSettingTab(this.app, this));
 	}
 
 	async loadSettings() {
@@ -170,16 +170,16 @@ export default class ShareNotePlugin extends Plugin {
 				new Notice(`❌ Error: ${response.status}`);
 			}
 		} catch (error) {
-			console.error('Share Note error:', error);
+			console.error('Page Sharing error:', error);
 			new Notice(`❌ Error: ${error.message}`);
 		}
 	}
 }
 
-class ShareNoteSettingTab extends PluginSettingTab {
-	plugin: ShareNotePlugin;
+class PageSharingSettingTab extends PluginSettingTab {
+	plugin: PageSharingPlugin;
 
-	constructor(app: App, plugin: ShareNotePlugin) {
+	constructor(app: App, plugin: PageSharingPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
@@ -188,7 +188,7 @@ class ShareNoteSettingTab extends PluginSettingTab {
 		const { containerEl } = this;
 		containerEl.empty();
 
-		containerEl.createEl('h2', { text: 'Share Note (Self-Hosted) Settings' });
+		containerEl.createEl('h2', { text: 'Page Sharing Settings' });
 
 		containerEl.createEl('p', {
 			text: 'By default, notes are shared via the plugin author\'s server. You can change this to your own self-hosted server if preferred.',

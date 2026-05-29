@@ -19,22 +19,22 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // main.ts
 var main_exports = {};
 __export(main_exports, {
-  default: () => ShareNotePlugin
+  default: () => PageSharingPlugin
 });
 module.exports = __toCommonJS(main_exports);
 var import_obsidian = require("obsidian");
 var DEFAULT_SETTINGS = {
   serverUrl: "https://share.142-252-220-144.sslip.io:8444"
 };
-var ShareNotePlugin = class extends import_obsidian.Plugin {
+var PageSharingPlugin = class extends import_obsidian.Plugin {
   async onload() {
     await this.loadSettings();
-    this.addRibbonIcon("share", "Share Note", async () => {
+    this.addRibbonIcon("share", "Page Sharing", async () => {
       await this.shareActiveNote();
     });
     this.addCommand({
       id: "share-note",
-      name: "Share current note",
+      name: "Share current page",
       callback: async () => {
         await this.shareActiveNote();
       }
@@ -43,14 +43,14 @@ var ShareNotePlugin = class extends import_obsidian.Plugin {
       this.app.workspace.on("file-menu", (menu, file) => {
         if (file instanceof import_obsidian.TFile && file.extension === "md") {
           menu.addItem((item) => {
-            item.setTitle("\u{1F517} Share Note").setIcon("share").onClick(async () => {
+            item.setTitle("\u{1F517} Share Page").setIcon("share").onClick(async () => {
               await this.shareFile(file);
             });
           });
         }
       })
     );
-    this.addSettingTab(new ShareNoteSettingTab(this.app, this));
+    this.addSettingTab(new PageSharingSettingTab(this.app, this));
   }
   async loadSettings() {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
@@ -152,12 +152,12 @@ Content-Type: application/octet-stream\r
         new import_obsidian.Notice(`\u274C Error: ${response.status}`);
       }
     } catch (error) {
-      console.error("Share Note error:", error);
+      console.error("Page Sharing error:", error);
       new import_obsidian.Notice(`\u274C Error: ${error.message}`);
     }
   }
 };
-var ShareNoteSettingTab = class extends import_obsidian.PluginSettingTab {
+var PageSharingSettingTab = class extends import_obsidian.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
     this.plugin = plugin;
@@ -165,7 +165,7 @@ var ShareNoteSettingTab = class extends import_obsidian.PluginSettingTab {
   display() {
     const { containerEl } = this;
     containerEl.empty();
-    containerEl.createEl("h2", { text: "Share Note (Self-Hosted) Settings" });
+    containerEl.createEl("h2", { text: "Page Sharing Settings" });
     containerEl.createEl("p", {
       text: "By default, notes are shared via the plugin author's server. You can change this to your own self-hosted server if preferred.",
       cls: "setting-item-description"

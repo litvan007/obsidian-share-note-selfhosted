@@ -1,5 +1,4 @@
-/* Share Note plugin styles */
-.share-note-status {
-    color: var(--text-muted);
-    font-size: 12px;
+.page-sharing-link {
+	color: var(--text-accent);
+	cursor: pointer;
 }
